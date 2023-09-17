@@ -1,0 +1,26 @@
+# https://reeborg.ca/reeborg.html?lang=en&mode=python&menu=worlds%2Fmenus%2Freeborg_intro_en.json&name=Maze&url=worlds%2Ftutorial_en%2Fmaze1.json
+# path followed is basically hugging the right handed wall
+
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+  
+def all_sides_clear():  
+    side = 0
+    for i in range(4):
+        side += front_is_clear()
+        turn_left()
+    return side == 4
+
+while not at_goal():
+    if right_is_clear():
+        if all_sides_clear():
+            move()
+        else:
+            turn_right()
+            move()
+    elif front_is_clear():
+        move()
+    else:
+        turn_left()
